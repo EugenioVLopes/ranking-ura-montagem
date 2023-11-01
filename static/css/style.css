@@ -1,0 +1,373 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*Escondendo elemento*/
+.hide{
+  display: none !important;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Mukta Mahee", sans-serif;
+
+  background: linear-gradient(to right, rgb(200, 235, 250), rgb(76,140,204));
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+
+  color: #000000;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  -webkit-animation: crown-animation 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: crown-animation 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.logo {
+  width: 12rem;
+  max-width: 100%;
+  padding: 0.5rem;
+}
+
+.container {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  -webkit-animation: crown-animation 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: crown-animation 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.podium {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3rem;
+}
+
+.main ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  position: relative;
+}
+
+.main li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.1rem;
+  margin: min(33%, 7rem);
+}
+
+.main li img {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  padding: 0.1rem;
+  border: 0.2rem solid #17eaf6;
+  background-color: #ffffff;
+  transition: scale 0.3s;
+}
+
+.main li img:hover {
+  scale: 1.15;
+}
+
+.main li:nth-child(1) {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translatex(-50%);
+  width: 8.5rem;
+  height: 8.5rem;
+  z-index: 200;
+  margin: unset;
+}
+
+.main li p {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.main li span {
+  display: none;
+}
+
+.main #crown {
+  width: 5rem;
+  height: 4rem;
+  border: unset;
+  padding: unset;
+  background: none;
+
+  -webkit-animation: crown-animation 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: crown-animation 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.main .time {
+  color: hsl(61, 100%, 50%);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 2.5rem;
+  -webkit-animation: crown-animation 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: crown-animation 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+section span {
+  font-size: 1.1rem;
+}
+
+section ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: min(22rem, 25rem);
+}
+
+section li {
+  display: flex;
+  background-color: #f5fbe8;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 1rem;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+section li:hover {
+  background-color: hsl(61, 79%, 74%);
+}
+
+section li span:first-child {
+  font-size: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+section li img {
+  display: none;
+}
+
+section li p {
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  word-break: break-all;
+}
+
+section li span:last-child {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #03b169;
+  width: min(33%, 20rem);
+}
+
+@media (max-width: 900px) {
+  .main{
+    margin-left: -1.5rem;
+  }
+
+}
+
+@media (max-width: 1400px) {
+  header{
+    flex-direction: column;
+  }
+  .container{
+    flex-direction: column;
+  }
+  .podium{
+    flex-direction: column;
+    margin-top: 4rem; 
+  }
+  .main {
+    flex-direction: column;
+  }
+
+  .main li {
+    gap: 0.1rem;
+    margin: min(33%, 3.5rem);
+  }
+
+  .main li img {
+    width: 7.5rem;
+    height: 7.5rem;
+  }
+  
+  .main li p {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .main li span {
+    font-size: 1rem;
+  }
+
+  .main li span {
+    display: contents;
+    font-size: 1rem;
+  }
+
+  .section {
+    flex-direction: column;
+  }
+
+  section li img {
+    display: flex;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+  }
+}
+
+/* #tabela-competidores{
+  font-size: 15px;
+  align-items: center;
+  justify-content: right;
+}
+
+#tabela-competidores label{
+  display: flex;
+  align-items: center;
+} */
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: hsl(61, 79%, 85%);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: hsl(61, 79%, 85%);
+  border-radius: 10px;
+}
+
+/* Animações */
+
+@-webkit-keyframes crown-animation {
+  0% {
+    -webkit-transform: rotateY(80deg);
+    transform: rotateY(80deg);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes crown-animation {
+  0% {
+    -webkit-transform: rotateY(80deg);
+    transform: rotateY(80deg);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes animate-svg-fill-1 {
+  0% {
+    fill: transparent
+  }
+
+  100% {
+    fill: rgb(1, 177, 105)
+  }
+}
+
+@keyframes animate-svg-fill-1 {
+  0% {
+    fill: transparent
+  }
+
+  100% {
+    fill: rgb(1, 177, 105)
+  }
+}
+
+.svg-elem-1 {
+  -webkit-animation: animate-svg-fill-1 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8s both;
+  animation: animate-svg-fill-1 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8s both
+}
+
+@-webkit-keyframes animate-svg-fill-2 {
+  0% {
+    fill: transparent
+  }
+
+  100% {
+    fill: rgb(1, 177, 105)
+  }
+}
+
+@keyframes animate-svg-fill-2 {
+  0% {
+    fill: transparent
+  }
+
+  100% {
+    fill: rgb(1, 177, 105)
+  }
+}
+
+.svg-elem-2 {
+  -webkit-animation: animate-svg-fill-2 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.9s both;
+  animation: animate-svg-fill-2 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) 0.9s both
+}
+

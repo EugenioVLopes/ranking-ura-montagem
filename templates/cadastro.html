@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="title" content="Ranking URA!" />
+    <title>Ranking URA MONTAGEM!</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/table.css" />
+
+    <!-- Fav Icon -->
+    <link
+      rel="shortcut icon"
+      href="../static/assets/favicon.svg"
+      type="image/jpeg"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <!-- Script -->
+    <script defer src="../static/js/script.js"></script>
+    <script src="../static/js/menu.js"></script>
+
+    <!-- Importando Data Tables JS-->
+    <!-- Inclua jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Inclua DataTables -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <!-- Font Awesome-->
+    <script
+      src="https://kit.fontawesome.com/410c0568ad.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body onload="get_ranking_tabela()">
+    <header class="col-12 mt-5 justify-content-center align-items-center">
+      <img class="col-6 col-md-2" src="../static/assets/white.png" alt="logo" />
+    </header>
+
+    <div class="mt-5 mb-5 col-xl-4 col-md-6 col-12" style="padding: 10px">
+      <div class="card p-2">
+        <div class="btn-group mt-2" role="group" aria-label="Basic example">
+          <button
+            type="button"
+            id="btn-participantes"
+            onclick="menuModal('participantes')"
+            class="btn btn-primary col-6"
+          >
+            Participantes
+          </button>
+          <button
+            type="button"
+            id="btn-cadastrar"
+            onclick="menuModal('cadastro')"
+            class="btn btn-outline-primary col-6"
+          >
+            Cadastrar
+          </button>
+        </div>
+
+        <div id="div-cadastro" class="hide">
+          <h6 class="text-center mt-4">FORMULÁRIO DE CADASTRO</h6>
+          <form class="justify-content-center d-flex flex-column">
+            <div class="form-group ml-2">
+              <label for="nome">
+                <strong>Nome:*</strong>
+              </label>
+              <input
+                type="text"
+                class="form-control mt-2"
+                id="nome"
+                placeholder="Nome do competidor"
+                required
+              />
+            </div>
+            <div class="form-group mt-2">
+              <label for="cronometro" class="ml-1">
+                <strong>Cronômetro</strong>
+              </label>
+              <div class="principal text-center">
+                <p class="tempo text text-size display-4">
+                  <span class="minutos">00</span>:<span class="segundos"
+                    >00</span
+                  >:<span class="milissegundos">00</span>
+                </p>
+                <div class="text-center">
+                  <button onclick="iniciar()" class="iniciar btn btn-primary col-xl-3 col-md-2 col-3">INICIAR</button>
+                  <button onclick="parar()" class="parar btn btn-primary col-xl-3 col-md-2 col-3">PARAR</button>
+                  <button onclick="resetar()" class="resetar btn btn-primary col-xl-3 col-md-2 col-3">RESETAR</button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group mt-2">
+              <label for="tempo" class="ml-1">
+                <strong>Tempo:*</strong>
+              </label>
+              <input
+                type="number"
+                class="form-control mt-2"
+                id="tempo"
+                placeholder="Tempo em segundos"
+                required
+              />
+            </div>
+
+            <button
+              onclick="adicionarCompetidor()"
+              type="button"
+              class="btn btn-outline-primary mt-4 mb-3"
+              style="width: 100%"
+            >
+              Adicionar competidor
+            </button>
+          </form>
+        </div>
+
+        <div id="div-participantes">
+          <h6 class="text-center mt-4">PARTICIPANTES</h6>
+          <table
+            id="tabela-competidores"
+            class="mt-3 table table-primary table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl"
+          >
+            <thead>
+              <tr align="center">
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Tempo</th>
+              </tr>
+            </thead>
+            <tbody align="center" id="tabela-competidores">
+              <strong class="text-success"></strong>
+              <!-- Os dados da tabela estarão aqui -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="footer container d-flex justify-content-center align-items-md-center col-xl-8 col-md-12"
+    >
+      <img
+        class="logo mr-2"
+        src="../static/assets/natalnetlogo.png"
+        alt="logo NatalNet"
+      />
+      <img class="logo" src="../static/assets/UFRNWHITE.png" alt="logo UFRN" />
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <img src="../static/assets/logo.svg" alt="" style="width: 60px" />
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="ml-3 row" id="informacoes-competidor">
+              <div class="form-group align-items-center">
+                <h6 class="text-primary"><strong>Nome:</strong></h6>
+                <h6 class="text-secondary" id="nome_modal">-</h6>
+              </div>
+              <div class="form-group align-items-center">
+                <h6 class="text-primary"><strong>Telefone:</strong></h6>
+                <h6 class="text-secondary" id="tel_modal">-</h6>
+              </div>
+              <div class="form-group align-items-center">
+                <h6 class="text-primary"><strong>Instagram:</strong></h6>
+                <h6 class="text-secondary" id="email_modal">-</h6>
+              </div>
+              <div class="form-group align-items-center">
+                <h6 class="text-primary"><strong>Tempo:</strong></h6>
+                <h6 class="text-secondary" id="tempo_modal"></h6>
+              </div>
+              <div class="form-group mt-2 hide" id="alterar_input">
+                <label for="tempo" class="ml-1">
+                  <strong class="text-success">Novo tempo:</strong>
+                </label>
+                <div class="d-flex mt-2">
+                  <input
+                    type="number"
+                    class="form-control mr-2"
+                    id="novo_tempo"
+                    placeholder="Tempo em segundos"
+                    required
+                  />
+                  <button class="btn btn-success" onclick="alterar_tempo()">
+                    Confirmar
+                  </button>
+                </div>
+              </div>
+              <div id="erro" class="mt-2"></div>
+            </div>
+            <div class="d-flex mt-2 mb-2" id="botoes">
+              <button
+                class="btn btn-outline-primary col-6"
+                onclick="view_novo_tempo()"
+              >
+                <i class="fa-solid fa-sliders mr-3"></i>
+                Alterar tempo
+              </button>
+              <button
+                class="btn btn-outline-danger col-6"
+                id="deletar"
+                style="margin-left: 5px"
+                onclick="deletar_competidor()"
+              >
+                <i class="fa-solid fa-user-minus mr-3"></i>
+                Excluir competidor
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Importando Data Tables JS-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+  </body>
+</html>
