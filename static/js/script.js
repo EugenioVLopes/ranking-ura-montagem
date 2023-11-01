@@ -1,5 +1,5 @@
 // var url_base = "http://127.0.0.1:3000"
-var url_base = "https://urarankingmontagem.onrender.com/"
+var url_base = "https://ranking-ura-montagem.onrender.com"
 
 const names = document.querySelectorAll("[data-name]");
 const value = document.querySelectorAll("[data-time]");
@@ -64,11 +64,10 @@ async function get_ranking_tabela() {
                                 `;
 
       competidor_nome = `<h6 class="mt-2">${competidor.nome}</h6>`;
-      competidor_telefone = `<h6 class="mt-2">${competidor.telefone}</h6>`;
       competidor_tempo = `<h6 class="mt-2">${competidor.tempo}</h6>`;
 
 
-      table.row.add([detalhar_competidor, competidor_nome, competidor_telefone, competidor_tempo]).draw();
+      table.row.add([detalhar_competidor, competidor_nome, competidor_tempo]).draw();
       
     });
   } catch (error) {
@@ -78,18 +77,14 @@ async function get_ranking_tabela() {
 
 async function adicionarCompetidor() {
   let nome = document.getElementById('nome').value;
-  let email = document.getElementById('email').value;
-  let telefone = document.getElementById('telefone').value;
   let tempo = Number(document.getElementById('tempo').value);
 
-  if (nome == "" || email == "" || telefone == "" || tempo == "") {
+  if (nome == "" ||  tempo == "") {
     return "Campos obrigatórios em branco";
   }
 
   const validado_competidor = {
     "nome": nome,
-    "email": email,
-    "telefone": telefone,
     "tempo": tempo
   };
 
@@ -121,8 +116,6 @@ async function adicionarCompetidor() {
 async function alterarModalCompetidor(competidor_id){
   //Competidor
   let nome = document.getElementById('nome_modal');
-  let email = document.getElementById('email_modal');
-  let telefone = document.getElementById('tel_modal');
   let tempo = document.getElementById('tempo_modal');
 
   competidor_clicado_id = competidor_id
@@ -134,8 +127,6 @@ async function alterarModalCompetidor(competidor_id){
         console.log(competidor)
 
         nome.innerHTML = competidor.nome;
-        email.innerHTML = competidor.email; 
-        telefone.innerHTML = competidor.telefone; 
         tempo.innerHTML = `<i class="fa-solid fa-clock"></i> ${competidor.tempo}s`;
         
     })

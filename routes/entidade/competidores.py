@@ -29,23 +29,17 @@ def adicionar_competidor():
     dados_recebidos = request.json
 
     nome = dados_recebidos['nome']
-    email = dados_recebidos['email']
-    telefone = dados_recebidos['telefone']
     tempo = dados_recebidos['tempo']
 
     collection_competidores.insert_one(
         {
             "nome": nome,
-            "email": email,
-            "telefone": telefone,
             "tempo" : tempo
         }
     )  
     response = jsonify(
         {
             "nome": nome,
-            "email": email,
-            "telefone": telefone,
             "tempo" : tempo
         }
     )
@@ -66,8 +60,6 @@ def get_competidores():
             "$project" : {
                 "_id" : {"$toString" : "$_id"},
                 "nome": 1,
-                "email": 1,
-                "telefone": 1,
                 "tempo" : 1
             }
         }
@@ -85,8 +77,6 @@ def get_competidores_id(_id):
         {
             "_id" : {"$toString" : "$_id"},
             "nome": 1,
-            "email": 1,
-            "telefone": 1,
             "tempo" : 1
         }
     )
